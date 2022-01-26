@@ -1,5 +1,7 @@
 
 var stopFlag = new Boolean(true);
+var BOOWOMP = new Audio('BOOWOMP.mp3');
+var AWESOME_MUSIC = new Audio('jeopardy.mp3');
 var currentTimeout;
 function startBlast() {
     //check if stopped, dont start timer again if its already going
@@ -7,6 +9,7 @@ function startBlast() {
         stopFlag = false;
         document.getElementById("BlastOffText").innerHTML = "";
         console.log("ok, im blasting off now")
+        AWESOME_MUSIC.play();
         var currTime = 50;
         //recursive solutions
         blastOff(currTime);
@@ -23,6 +26,7 @@ function startBlast() {
                         blastOff(timeRemaining-5);
                     }, 5000);
                 } else {
+                    
                     alert("blast off ! ! ! ! !");
                     stopFlag = true;
                 }
@@ -32,6 +36,9 @@ function startBlast() {
 }
 
 function stopThat() {
+    AWESOME_MUSIC.pause();
+    AWESOME_MUSIC.currentTime = 0;
+    BOOWOMP.play();
     if(!stopFlag) {
         stopFlag = true;
         clearTimeout(currentTimeout);
